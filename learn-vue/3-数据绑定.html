@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>初始</title>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+
+        <div id="root">
+            单向绑定<input type="text" v-bind:value="valA"><br>
+            <!-- 只用于表单的输入 有value值 -->
+            双向绑定<input type="text" v-model:value="valB"> 
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip=false
+            const x=new Vue({
+                el:"#root", // 指定vue 容器
+                data:{  // 用于存储数据
+                    valA:'闪亮',
+                    valB:'奕晨'
+                }
+            })
+        </script>
+    </body>
+</html>

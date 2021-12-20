@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='yichen'>
+        <button v-on:click="showInfo1">方法不传参,event 为时间侦听</button>
+        <button @click="showInfo2($event,66)">方法传参,$event为event占位符</button>
+    </div>
+    <template id=''>
+        <div >
+        
+        </div>
+    </template>
+    
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script>
+    
+    
+    var vm=new Vue({
+        el:'#yichen',
+        data: {
+        
+        },
+        methods: {
+            showInfo1(event){
+                console.log(event);
+                alert("方法不传参");
+            },
+            showInfo2(event,number){
+                console.log("event"+event+"  number"+number);
+                console.log(this);// 这里的 this 是 vm
+                alert("方法传参，$event为event占位符");
+            }
+        },
+        directives: {
+        
+        },
+        components: {
+        
+        },
+        filters: {
+            
+        
+        },
+    })
+    </script>
+</body>
+</html>
