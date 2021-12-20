@@ -1,5 +1,28 @@
 # vue学习
 ## 总结 summary
+
+### 特殊note
+
+```html
+1、修饰符可以连用
+// 先阻止默认事件，在阻止冒泡
+<button @click="show">
+   <a href="http://www.baidu.com" @click.prevent.stop="show">335454345</a>
+</button>
+show(){
+   alert("点击提示");
+}
+// 以及按键   指定 ctrl+y才生效
+<input type="text" placeholder="按下回车提示输入" @keyup.ctrl.y="showInfo">
+showInfo(e){
+	console.log(e.key,e.keyCode); // 打印 key 和 keyCode ，如果是两个单次，示例CapsLock 则需要切换成 caps-lock
+}
+```
+
+
+
+
+
 ### 插值语法
 ```
 {{ name }}  // 用于解析标签体内容，例如 <h1></h1>
@@ -22,7 +45,7 @@ v-model  只能用于输入类表单元素 value 属性
 
 > 1、prevent：阻止默认事件    例：url 不让跳转
 >
-> 2、stop：阻止实践冒泡   例：不让父容器触发
+> 2、stop：阻止事件冒泡   例：不让父容器触发
 >
 > 3、once：事件只触发一次   例：按钮只能点击一次
 >
@@ -35,6 +58,44 @@ v-model  只能用于输入类表单元素 value 属性
 ### vue绑定 html标签
 > 1、 el:绑定 例 el:'#root'
 > 2、 x.$mount() 例 x.$mount('#root')
+### 按键别名
+
+>  回车 =》 enter
+>
+> 删除 =》 delete
+>
+> 退出 =》 esc
+>
+> 空格 =》 space
+>
+> 换行 =》 tab
+>
+> 上 =》 up
+>
+> 下 =》 down
+>
+> 左 =》 left
+>
+> 右 =》 right
+>
+> 示例： input输入框按回车输入里面的内容 
+>
+> <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+>
+> methods: {
+>
+> ​      showInfo(e){
+>
+> ​        // if(e.keyCode !== 13)return; 
+>
+> ​        console.log(e.target.value);
+>
+> ​      }
+>
+> ​    }
+
+
+
 ## 开发工具
 ### vs code
 #### 常用插件
@@ -45,6 +106,10 @@ v-model  只能用于输入类表单元素 value 属性
 > Vue 3 Snippets  // vue 标签提示
 >
 > Tabout   // 跳括号、引号等，跟 idea tab键类似功能
+>
+> JavaScript (ES6) code snippets
+>
+> HTML CSS Support
 
 ==待尝试==
 

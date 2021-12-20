@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:20px;
+        }
+    </style>
+</head>
+<body>
+    <div id='yichen'>
+        <input type="text" placeholder="按下回车提示输入" @keyup.ctrl.y="showInfo">
+        <button @click="show">
+            <a href="http://www.baidu.com" @click.prevent.stop="show">335454345</a>
+        </button>
+    </div>
+    <template id=''>
+        <div >
+        
+        </div>
+    </template>
+    
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script>
+    
+    var vm=new Vue({
+        el:'#yichen',
+        data: {
+            
+        },
+        methods: {
+            showInfo(e){
+                // if(e.keyCode !== 13)return; 
+                console.log(e.key,e.keyCode); // 打印 key 和 keyCode ，如果是两个单次，示例CapsLock 则需要切换成 caps-lock
+                // console.log(e.target.value);
+            },
+            show(){
+                alert("点击提示");
+            }
+        },
+        directives: {
+        
+        },
+        components: {
+        
+        },
+        filters: {
+        
+        },
+    })
+    </script>
+</body>
+</html>
