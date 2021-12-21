@@ -94,6 +94,78 @@ v-model  只能用于输入类表单元素 value 属性
 >
 > ​    }
 
+### 计算属性和监视属性
+
+#### 计算属性computed
+
+```javascript
+computed:{
+    fullName:{
+        //  get有什么作用？当有人读取fullName时，get就会被调用，且返回值就作为fullName
+        //  get什么时候调用 1、初次读取fullName  2、所依赖的数据变化时
+        get(){
+            return this.firstName+'-'+this.lastName;
+        },
+            // 当赋值时会触发
+            set(){
+                console.log("call set method");
+            }
+    }
+},
+```
+
+#### 监视变量 watch
+
+```javascript
+watch:{
+    isHot:{
+        // immediate 初始化执行 handler
+        immediate:true,
+            // 监控的变量发生变化时触发
+            handler(newValue,oldValue){
+            console.log(newValue,oldValue);
+        }
+    }
+},
+```
+
+#### 深度监视 watch =》 deep
+
+>深度监视：
+>
+>1、Vue中的watch默认不监视对象内部值的变化(一层)
+>
+>2、配置`deep:true`可以监视对象内部值的变化(多层)
+>
+>备注：
+>
+>1、Vue自身可以监视对象内部值的改变，但是Vue提供的watch默认不可以
+>
+>2、使用watch时根据数据的具体结构，决定是否采用深度监视
+
+```javascript
+number:{
+    // 深度监视 默认false  false情况下不会监视对象内部属性变化
+    // deep:true,
+    handler(newValue,oldValue){
+        console.log("值发生变化了");
+    }
+},
+```
+
+#### 区分和总结
+
+```java
+computed 和 watch 之间的区别
+	1、computed 能完成的功能，watch都可以完成。
+	2、watch 能完成的功能，computed 不一定能完成：例如watch可以进行异步操作
+两个重要的小原则：
+	1、所被vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象
+    2、所有不被vue所管理的函数（定时器的回调函数、ajax的回调函数、Promise的回调函数等），最好写成箭头函数，这样this的指向才是vm或者组件实例对象
+```
+
+
+
 
 
 ## 开发工具
@@ -110,6 +182,8 @@ v-model  只能用于输入类表单元素 value 属性
 > JavaScript (ES6) code snippets
 >
 > HTML CSS Support
+>
+> vue helper   // vue 编码提示插件
 
 ==待尝试==
 

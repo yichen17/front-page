@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='yichen'>
+        <div>今天天气很 {{ info }}</div>
+        
+        <!-- 简写 -->
+        <button @click="isHot=!isHot;">点击切换天气</button>
+
+        <!-- <button @click="change">点击切换天气</button> -->
+        <hr/>
+        <h2>当前计数 {{number.a}}</h2>
+        <button @click="add">点击增加</button></button>
+    </div>
+    <template id=''>
+        <div >
+        
+        </div>
+    </template>
+    
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script>
+    
+    var vm=new Vue({
+        el:'#yichen',
+        data: {
+            'isHot':true,
+            'number':{
+                a:1,
+                b:1,
+            }
+        },
+        methods: {
+            change(){
+                this.isHot=!this.isHot;
+            },
+            add(){
+                this.number.a++;
+            }
+        },
+        computed: {
+            info(){
+                return this.isHot ? "炎热" : "寒冷";
+            }
+        },
+        watch:{
+            // isHot:{
+            //     // immediate 初始化执行 handler
+            //     immediate:true,
+            //     // 监控的变量发生变化时触发
+            //     handler(newValue,oldValue){
+            //         console.log(newValue,oldValue);
+            //     }
+            // },
+            number:{
+                // 深度监视 默认false  false情况下不会监视对象内部属性变化
+                // deep:true,
+                handler(newValue,oldValue){
+                    console.log("值发生变化了");
+                }
+            },
+            // 简写，只使用handler的情况
+            isHot(newValue,oldValue){
+                console.log(newValue,oldValue);
+            }
+
+        },
+        directives: {
+        
+        },
+        components: {
+        
+        },
+        filters: {
+        
+        },
+    })
+    </script>
+</body>
+</html>
