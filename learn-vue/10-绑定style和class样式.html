@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .basic{
+            margin: 30px;
+            border: 1px black solid;
+        }
+        .happy{
+            background-color: red;
+        }
+        .sad{
+            background-color: gray;
+        }
+        .normal{
+            background-color: blue;
+        }
+        .yichen1{
+            font-size: 40px;
+        }
+        .yichen2{
+            color: yellow;
+        }
+        .yichen3{
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body>
+    <div id='yichen'>
+        <!-- 单个切换样式 字符串写法 用于样式的类名不固定，需要动态指定 -->
+        <div class="basic" :class="classSwitch" @click="switchClass">class属性单个切换</div> <br><br>
+        <!-- 组合使用  数组写法 适用于 要绑定的样式个数不确定，名字也不确定 -->
+        <div class="basic" :class="classArr" >class属性组合变换</div> <br><br>
+        <!-- 单纯变换  对象写法  适用于 要绑定的样式个数确定，名字确定 但是要动态决定用还是不用-->
+        <div class="basic" :class="classChange" >class属性指定变换</div> <br><br>
+        <!-- 可以指定单个，也可以指定多个，注意多单词需要驼峰命名  -->
+        <div :style="styleCustomize" >style属性 样式变换</div> <br><br>
+        <!-- 也可以以数组形式  拼接多个样式  -->
+        <div :style="styleCustomizeArr" >style属性 样式变换</div> <br><br>
+    </div>
+    <template id=''>
+        <div >
+        
+        </div>
+    </template>
+    
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script>
+    
+    var vm=new Vue({
+        el:'#yichen',
+        data: {
+            classSwitch:'normal',
+            classArr:['yichen1','yichen2','yichen3'],
+            classChange:{
+                'yichen1':false,
+                'yichen2':false,   
+            },
+            styleCustomize:{
+                'fontSize':'60px',
+                'color':'purple',
+            },
+            styleCustomizeArr:[
+                {
+                    'fontSize':'30px',
+                    'color':'green',
+                },
+                {
+                    'backgroundColor':'pink',
+                }
+            ]
+        },
+        methods: {
+            switchClass(){
+                // 随机切换颜色
+                classArr=['happy','sad','normal'];
+                this.classSwitch=classArr[Math.floor(Math.random()*3)];
+            }
+        },
+        computed: {
+        
+        },
+        directives: {
+        
+        },
+        components: {
+        
+        },
+        filters: {
+        
+        },
+    })
+    </script>
+</body>
+</html>
