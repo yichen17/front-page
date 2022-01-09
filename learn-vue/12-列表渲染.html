@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1、列表渲染
+        2、列表过滤
+        3、列表排序
+        4、分析
+     -->
+    <div id='yichen'>
+
+        <!-- 插入 -->
+        <button type="button" @click="firstAdd">首行插入</button>
+        <button type="button" @click="endAdd">插入末尾</button>
+
+        <!-- 数据过滤/筛选 -->
+        <input type="text" placeholder="请输入过滤条件" v-model:value="inputValue" />
+        <ul>
+            <li v-for="(item,index) in filGameName" :key="item.id">
+                {{ item.name}} -- {{ item.game}}
+            </li>
+        </ul>
+
+        <div>key的作用原理-如果包含输入DOM数据会错乱(如果key没有指定成行唯一键,例如默认的index)</div>
+        <button @click.once="addOneLine">添加一行</button>
+        <ul>
+            <li v-for="(item,index) in gamesName" :key="item.id">
+                {{ item.name}} -- {{ item.game}}
+                <input type="text"/>
+            </li>
+        </ul>
+
+        <div>列表渲染-遍历数组</div>
+        <ul>
+            <li v-for="(item,index) in places" :key="index">
+                {{ item.name }} -- {{item.position}}
+            </li>
+        </ul>
+        <div>列表渲染-遍历对象-value/key</div>
+        <ul>
+            <li v-for="(value,key,index) in books" :key="index">
+                {{ key }} -- {{ value }}
+            </li>
+        </ul>
+        <div>列表渲染-遍历字符串-逐个遍历</div>
+        <ul>
+            <li v-for="(item,index) in username" :key="index">
+                {{ item }} -- {{ index }}
+            </li>
+        </ul>
+        <div>列表渲染-遍历n次-从1开始</div>
+        <ul>
+            <li v-for="(item,index) in 5" :key="index">
+                {{ item }} -- {{ index }}
+            </li>
+        </ul>
+        
+        
+        
+    </div> 
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script>
+    
+    var vm=new Vue({
+        el:'#yichen',
+        data: {
+            places:[
+                {'name':'海底动物园','position':'上海'},
+                {'name':'西湖湿地','position':'杭州'}
+            ],
+            books:{
+                'name':'海底两万里',
+                'price':'123.45'
+            },
+            username:'yichen',
+            gamesName:[
+                {'id':'001','name':'shanliang','game':'同城游戏'},
+                {'id':'002','name':'yichen','game':'西湖湿地游玩'},
+                {'id':'003','name':'banyu','game':'语文课上'}
+            ],
+            inputValue:'',
+            // filGameName:[],
+        },
+        methods: {
+            addOneLine(){
+                console.log('11')
+                // 通过数组赋值的危害   => 没有监听到
+                this.gamesName[0]={'id':'007','name':'外卖仔','game':'美团'};
+                // 正确做法
+                // this.gamesName.unshift({'id':'004','name':'抱抱自己','game':'怪、摸摸头'});
+            },
+            firstAdd(){
+                this.gamesName.unshift({'id':'005','name':'狂杀一条街','game':'军旗'});
+            },
+            endAdd(){
+                this.gamesName.push({'id':'006','name':'够爱','game':'终极一班'});
+            }
+
+        },
+        computed: {
+            //  通过计算属性实现
+            filGameName:{
+                get(){
+                    return this.gamesName.filter((p)=>{
+                        return p.game.indexOf(this.inputValue) !== -1;
+                    })
+                }
+            }
+        },
+        watch: {
+            //#region 通过 watch 监视属性实现
+            // inputValue:{
+            //     immediate:true,
+            //     handler(value){
+            //         this.filGameName=this.gamesName.filter((p)=>{
+            //             return p.game.indexOf(value) !== -1;
+            //         })
+            //     }
+            // }
+            //#endregion
+        },
+        directives: {
+        
+        },
+        components: {
+        
+        },
+        filters: {
+        
+        },
+    })
+    </script>
+</body>
+</html>

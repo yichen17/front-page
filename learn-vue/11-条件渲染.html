@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='yichen'>
+        <!-- 通过 v-show 控制显示影藏，本质是通过  display 属性 -->
+        <div v-show="a">条件渲染-显示/隐藏</div>
+        <!-- v-if 直接将 dom节点移除 -->
+        <div> 当前计数 {{ n }}</div>
+        <button @click="n++">点击我 n++</button>
+        <div v-if=" n === 1">闪亮</div>
+        <div v-if=" n === 2">奕晨</div>
+        <div v-if=" n === 3">伴语</div>
+        <!--  if else if else 处理  这里必须连接出现，如果中间被其他东西隔开，则隔开之后的无效 -->
+        <hr/>
+        <div v-if=" n === 1">孙悟空</div>
+        <div v-else-if=" n === 2">沙和尚</div>
+        <div v-else-if=" n === 3">猪八戒</div>
+        <div v-else>唐僧</div>
+        <hr></hr>
+        <!-- template 模板使用，没有外部的dom  =>   必须和 v-if 一起使用，和 v-show使用则失效  -->
+        <template v-if="n === 5">
+            <div>如果</div>
+            <div>那两个字</div>
+            <div>没说出口</div>
+        </template>
+    </div>
+    <template id=''>
+        <div >
+            
+        </div>
+    </template>
+    
+    <script type='text/javascript' src='../js/vue.js'></script>
+    <script>
+    
+    var vm=new Vue({
+        el:'#yichen',
+        data: {
+            a:true,
+            n:0,
+        },
+        methods: {
+        
+        },
+        computed: {
+        
+        },
+        watch: {
+        
+        },
+        directives: {
+        
+        },
+        components: {
+        
+        },
+        filters: {
+        
+        },
+    })
+    </script>
+</body>
+</html>
